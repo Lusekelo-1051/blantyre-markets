@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blantyre District Markets – Dijkstra & MST</title>
+<style>
+:root{--bg:#fff;--fg:#1a1a1a;--mut:#666;--ln:#bbb;--pri:#c8102e;--acc:#0a7d3b;--card:#f5f5f5}
+@media(prefers-color-scheme:dark){:root{--bg:#161616;--fg:#eee;--mut:#aaa;--ln:#555;--card:#242424}}
+body{margin:0;font-family:system-ui,sans-serif;background:var(--bg);color:var(--fg);padding:12px;max-width:1000px;margin:auto}
+h1{font-size:1.2rem;margin:.2rem 0}.row{display:flex;flex-wrap:wrap;gap:8px;align-items:end;margin:8px 0}
+label{font-size:.8rem;color:var(--mut);display:block}select,button{padding:8px;font-size:1rem;border-radius:6px;border:1px solid var(--ln);background:var(--card);color:var(--fg)}
+button.p{background:var(--pri);color:#fff;border:0}svg{width:100%;height:auto;background:var(--card);border-radius:8px}
+.out{background:var(--card);padding:10px;border-radius:8px;font-size:.9rem;overflow-x:auto}pre{margin:0;white-space:pre-wrap}
+</style></head><body>
+<h1>Blantyre District Markets – Dijkstra &amp; Minimum Spanning Tree</h1>
+<p style="font-size:.85rem;color:var(--mut)">22 markets, road links in metres. Pick two markets and run Dijkstra, or show the MST.</p>
+<div class="row">
+<div><label>From</label><select id="a"></select></div>
+<div><label>To</label><select id="b"></select></div>
+<button class="p" id="go">Run Dijkstra</button>
+<button id="kr">Show MST (Kruskal)</button>
+<button id="pr">Show MST (Prim)</button>
+</div>
+<svg id="map" viewBox="0 0 600 700"></svg>
+<h3>Result</h3><div class="out"><pre id="res">Choose towns and press Run Dijkstra.</pre></div>
+<h3>Step-by-step trace</h3><div class="out"><pre id="trace"></pre></div>
+<script>
+const G={"nodes": [{"name": "Blantyre_Central", "lon": 35.0036, "lat": -15.7867}, {"name": "Limbe", "lon": 35.0642, "lat": -15.8133}, {"name": "Ndirande", "lon": 35.0302, "lat": -15.7692}, {"name": "Chilomoni", "lon": 34.9806, "lat": -15.7503}, {"name": "Bangwe", "lon": 35.047, "lat": -15.8035}, {"name": "Soche", "lon": 35.017, "lat": -15.812}, {"name": "Chirimba", "lon": 35.085, "lat": -15.81}, {"name": "Kanjedza", "lon": 35.062, "lat": -15.778}, {"name": "Chitawira", "lon": 35.047, "lat": -15.793}, {"name": "Zingwangwa", "lon": 34.985, "lat": -15.801}, {"name": "Machinjiri_Market", "lon": 35.08, "lat": -15.84}, {"name": "Chilobwe", "lon": 35.032, "lat": -15.833}, {"name": "Chigumula", "lon": 34.97, "lat": -15.825}, {"name": "Lunzu", "lon": 34.96, "lat": -15.715}, {"name": "Chileka_Market", "lon": 34.975, "lat": -15.68}, {"name": "Kameza", "lon": 34.969, "lat": -15.787}, {"name": "Ginnery_Corner", "lon": 35.019, "lat": -15.776}, {"name": "Mbayani", "lon": 34.988, "lat": -15.789}, {"name": "Manje", "lon": 34.993, "lat": -15.764}, {"name": "Naperi", "lon": 35.04, "lat": -15.758}, {"name": "Chimwankhunda", "lon": 35.025, "lat": -15.795}, {"name": "Nkolokosa", "lon": 35.013, "lat": -15.76}], "edges": [["Blantyre_Central", "Soche", 4100], ["Blantyre_Central", "Zingwangwa", 3300], ["Blantyre_Central", "Ginnery_Corner", 2600], ["Blantyre_Central", "Mbayani", 2200], ["Blantyre_Central", "Manje", 3600], ["Blantyre_Central", "Chimwankhunda", 3200], ["Limbe", "Bangwe", 2800], ["Limbe", "Chirimba", 2900], ["Limbe", "Chitawira", 3800], ["Limbe", "Machinjiri_Market", 4400], ["Limbe", "Chilobwe", 5300], ["Ndirande", "Ginnery_Corner", 1800], ["Ndirande", "Naperi", 2100], ["Ndirande", "Nkolokosa", 2700], ["Chilomoni", "Lunzu", 5900], ["Chilomoni", "Chileka_Market", 10200], ["Chilomoni", "Kameza", 5500], ["Chilomoni", "Manje", 2600], ["Chilomoni", "Nkolokosa", 4700], ["Bangwe", "Chirimba", 5400], ["Bangwe", "Kanjedza", 4200], ["Bangwe", "Chitawira", 1500], ["Bangwe", "Chilobwe", 4700], ["Bangwe", "Chimwankhunda", 3300], ["Soche", "Chilobwe", 3700], ["Soche", "Chimwankhunda", 2700], ["Chirimba", "Machinjiri_Market", 4400], ["Kanjedza", "Chitawira", 3000], ["Kanjedza", "Naperi", 4200], ["Chitawira", "Chimwankhunda", 3100], ["Zingwangwa", "Chigumula", 4000], ["Zingwangwa", "Kameza", 3000], ["Zingwangwa", "Mbayani", 1800], ["Machinjiri_Market", "Chilobwe", 6800], ["Chigumula", "Kameza", 5500], ["Chigumula", "Mbayani", 5800], ["Lunzu", "Chileka_Market", 5500], ["Lunzu", "Manje", 8400], ["Chileka_Market", "Manje", 12400], ["Kameza", "Mbayani", 2700], ["Kameza", "Manje", 4700], ["Ginnery_Corner", "Naperi", 3900], ["Ginnery_Corner", "Chimwankhunda", 2900], ["Ginnery_Corner", "Nkolokosa", 2500], ["Manje", "Nkolokosa", 2800], ["Naperi", "Nkolokosa", 3800]]};
+const N=G.nodes.length,idx={};G.nodes.forEach((n,i)=>idx[n.name]=i);
+const adj=G.nodes.map(()=>[]);
+G.edges.forEach(([a,b,w])=>{const u=idx[a],v=idx[b];adj[u].push([v,w]);adj[v].push([u,w])});
+const $=id=>document.getElementById(id),nm=i=>G.nodes[i].name.replace(/_/g,' ');
+const lons=G.nodes.map(n=>n.lon),lats=G.nodes.map(n=>n.lat);
+const x0=Math.min(...lons),x1=Math.max(...lons),y0=Math.min(...lats),y1=Math.max(...lats);
+const P=G.nodes.map(n=>[40+(n.lon-x0)/(x1-x0)*520,40+(y1-n.lat)/(y1-y0)*620]);
+G.nodes.forEach((n,i)=>{for(const s of['a','b']){const o=document.createElement('option');o.value=i;o.textContent=nm(i);$(s).appendChild(o)}});
+$('a').value=idx.Chileka_Market;$('b').value=idx.Machinjiri_Market;
+function draw(hl,hlN){ // hl: set of "u-v" keys
+ let s='';
+ G.edges.forEach(([a,b,w])=>{const u=idx[a],v=idx[b],k=Math.min(u,v)+'-'+Math.max(u,v),on=hl&&hl.has(k);
+  s+=`<line x1="${P[u][0]}" y1="${P[u][1]}" x2="${P[v][0]}" y2="${P[v][1]}" stroke="${on?'#c8102e':'#999'}" stroke-width="${on?4:1.5}"/>`;
+  s+=`<text x="${(P[u][0]+P[v][0])/2}" y="${(P[u][1]+P[v][1])/2}" font-size="9" fill="${on?'#c8102e':'#777'}" text-anchor="middle">${w}</text>`});
+ G.nodes.forEach((n,i)=>{const on=hlN&&hlN.has(i);
+  s+=`<circle cx="${P[i][0]}" cy="${P[i][1]}" r="${on?7:5}" fill="${on?'#c8102e':'#0a7d3b'}"/><text x="${P[i][0]+8}" y="${P[i][1]+3}" font-size="9" fill="currentColor">${nm(i)}</text>`});
+ $('map').innerHTML=s}
+function dijkstra(s,t){
+ const dist=Array(N).fill(Infinity),prev=Array(N).fill(-1),done=Array(N).fill(false),log=[];
+ dist[s]=0;let step=0;
+ while(true){let u=-1;for(let i=0;i<N;i++)if(!done[i]&&dist[i]<Infinity&&(u<0||dist[i]<dist[u]))u=i;
+  if(u<0)break;done[u]=true;log.push(`Step ${++step}: settle ${nm(u)} (dist=${dist[u]})`);
+  for(const[v,w]of adj[u]){if(done[v])continue;if(dist[u]+w<dist[v]){log.push(`    relax ${nm(v)}: ${dist[v]===Infinity?'INF':dist[v]} -> ${dist[u]+w}`);dist[v]=dist[u]+w;prev[v]=u}}
+  if(u===t)break}
+ return{dist,prev,log}}
+$('go').onclick=()=>{const s=+$('a').value,t=+$('b').value,r=dijkstra(s,t);
+ if(r.dist[t]===Infinity){$('res').textContent='No route';draw();return}
+ const p=[];for(let v=t;v!==-1;v=r.prev[v])p.push(v);p.reverse();
+ const hl=new Set();for(let i=0;i+1<p.length;i++)hl.add(Math.min(p[i],p[i+1])+'-'+Math.max(p[i],p[i+1]));
+ $('res').textContent=`Shortest distance ${nm(s)} -> ${nm(t)} = ${r.dist[t]} km\nPath: ${p.map(nm).join(' -> ')}`;
+ $('trace').textContent=r.log.join('\n');draw(hl,new Set(p))};
+function showMST(list,total,label){const hl=new Set(list.map(([u,v])=>Math.min(u,v)+'-'+Math.max(u,v)));
+ $('res').textContent=`${label} MST: ${list.length} edges, total ${total} km`;
+ $('trace').textContent=list.map(([u,v,w])=>`${nm(u)} - ${nm(v)} (${w} km)`).join('\n');draw(hl,new Set(list.flat().filter((x,i)=>i%3<2)))}
+$('kr').onclick=()=>{const es=G.edges.map(([a,b,w])=>[idx[a],idx[b],w]).sort((x,y)=>x[2]-y[2]),par=[...Array(N).keys()];
+ const f=x=>par[x]===x?x:(par[x]=f(par[x]));const out=[];let tot=0;
+ for(const e of es){const a=f(e[0]),b=f(e[1]);if(a!==b){par[a]=b;out.push(e);tot+=e[2]}}showMST(out,tot,'Kruskal')};
+$('pr').onclick=()=>{const inT=Array(N).fill(false),out=[];let tot=0;inT[0]=true;
+ for(let k=1;k<N;k++){let best=null;for(let u=0;u<N;u++)if(inT[u])for(const[v,w]of adj[u])if(!inT[v]&&(!best||w<best[2]))best=[u,v,w];
+  if(!best)break;inT[best[1]]=true;out.push(best);tot+=best[2]}showMST(out,tot,'Prim')};
+draw();
+</script></body></html>

@@ -1,0 +1,133 @@
+[T1] Long route across the district (north edge to south-east)
+$ ./dijkstra graph.txt shortest Chileka_Market Machinjiri_Market
+Shortest distance Chileka_Market -> Machinjiri_Market = 29700 m
+Path: Chileka_Market -> Manje -> Blantyre_Central -> Chimwankhunda -> Bangwe -> Limbe -> Machinjiri_Market
+(exit code 0)
+
+[T2] Far-apart markets (west to east)
+$ ./dijkstra graph.txt shortest Lunzu Chirimba
+Shortest distance Lunzu -> Chirimba = 23900 m
+Path: Lunzu -> Manje -> Blantyre_Central -> Chimwankhunda -> Bangwe -> Chirimba
+(exit code 0)
+
+[T3] Source equals destination
+$ ./dijkstra graph.txt shortest Limbe Limbe
+Shortest distance Limbe -> Limbe = 0 m
+Path: Limbe
+(exit code 0)
+
+[T4] Far outlying market to city centre
+$ ./dijkstra graph.txt shortest Chileka_Market Blantyre_Central
+Shortest distance Chileka_Market -> Blantyre_Central = 16000 m
+Path: Chileka_Market -> Manje -> Blantyre_Central
+(exit code 0)
+
+[T5] Neighbouring markets (direct road likely best)
+$ ./dijkstra graph.txt shortest Blantyre_Central Chitawira
+Shortest distance Blantyre_Central -> Chitawira = 6300 m
+Path: Blantyre_Central -> Chimwankhunda -> Chitawira
+(exit code 0)
+
+[T6] Route through the middle of the network
+$ ./dijkstra graph.txt shortest Mbayani Bangwe
+Shortest distance Mbayani -> Bangwe = 8700 m
+Path: Mbayani -> Blantyre_Central -> Chimwankhunda -> Bangwe
+(exit code 0)
+
+[T7] Invalid market name (error handling)
+$ ./dijkstra graph.txt shortest Limbe Lusaka
+ERROR: unknown town name
+(exit code 2)
+
+[T8] Unreachable node (disconnected graph)
+$ ./dijkstra tests/disconnected.txt shortest A D
+No route from A to D
+(exit code 0)
+
+[T9] Negative weight rejected
+$ ./dijkstra tests/negative.txt shortest A B
+ERROR: negative weight on A-B (Dijkstra needs w >= 0)
+(exit code 1)
+
+[T10] Missing input file
+$ ./dijkstra nofile.txt shortest A B
+ERROR: cannot open file nofile.txt
+(exit code 1)
+
+[T11] Kruskal MST
+$ ./dijkstra graph.txt mst
+Bangwe - Chitawira (1500 m)
+Zingwangwa - Mbayani (1800 m)
+Ndirande - Ginnery_Corner (1800 m)
+Ndirande - Naperi (2100 m)
+Blantyre_Central - Mbayani (2200 m)
+Ginnery_Corner - Nkolokosa (2500 m)
+Blantyre_Central - Ginnery_Corner (2600 m)
+Chilomoni - Manje (2600 m)
+Kameza - Mbayani (2700 m)
+Soche - Chimwankhunda (2700 m)
+Limbe - Bangwe (2800 m)
+Manje - Nkolokosa (2800 m)
+Limbe - Chirimba (2900 m)
+Ginnery_Corner - Chimwankhunda (2900 m)
+Kanjedza - Chitawira (3000 m)
+Chitawira - Chimwankhunda (3100 m)
+Soche - Chilobwe (3700 m)
+Zingwangwa - Chigumula (4000 m)
+Chirimba - Machinjiri_Market (4400 m)
+Lunzu - Chileka_Market (5500 m)
+Chilomoni - Lunzu (5900 m)
+MST total = 63500 m using 21 edges
+(exit code 0)
+
+[X] Exhaustive cross-check: C++ vs independent Python Dijkstra on all 231 town pairs -> mismatches: 0
+
+[D] Dry-run trace Chileka -> Machinjiri
+Step 1: settle Chileka_Market (dist=0)
+    relax Chilomoni: INF -> 10200
+    relax Lunzu: INF -> 5500
+    relax Manje: INF -> 12400
+Step 2: settle Lunzu (dist=5500)
+Step 3: settle Chilomoni (dist=10200)
+    relax Kameza: INF -> 15700
+    relax Nkolokosa: INF -> 14900
+Step 4: settle Manje (dist=12400)
+    relax Blantyre_Central: INF -> 16000
+Step 5: settle Nkolokosa (dist=14900)
+    relax Ndirande: INF -> 17600
+    relax Ginnery_Corner: INF -> 17400
+    relax Naperi: INF -> 18700
+Step 6: settle Kameza (dist=15700)
+    relax Zingwangwa: INF -> 18700
+    relax Chigumula: INF -> 21200
+    relax Mbayani: INF -> 18400
+Step 7: settle Blantyre_Central (dist=16000)
+    relax Soche: INF -> 20100
+    relax Mbayani: 18400 -> 18200
+    relax Chimwankhunda: INF -> 19200
+Step 8: settle Ginnery_Corner (dist=17400)
+Step 9: settle Ndirande (dist=17600)
+Step 10: settle Mbayani (dist=18200)
+Step 11: settle Zingwangwa (dist=18700)
+Step 12: settle Naperi (dist=18700)
+    relax Kanjedza: INF -> 22900
+Step 13: settle Chimwankhunda (dist=19200)
+    relax Bangwe: INF -> 22500
+    relax Chitawira: INF -> 22300
+Step 14: settle Soche (dist=20100)
+    relax Chilobwe: INF -> 23800
+Step 15: settle Chigumula (dist=21200)
+Step 16: settle Chitawira (dist=22300)
+    relax Limbe: INF -> 26100
+Step 17: settle Bangwe (dist=22500)
+    relax Limbe: 26100 -> 25300
+    relax Chirimba: INF -> 27900
+Step 18: settle Kanjedza (dist=22900)
+Step 19: settle Chilobwe (dist=23800)
+    relax Machinjiri_Market: INF -> 30600
+Step 20: settle Limbe (dist=25300)
+    relax Machinjiri_Market: 30600 -> 29700
+Step 21: settle Chirimba (dist=27900)
+Step 22: settle Machinjiri_Market (dist=29700)
+Shortest distance Chileka_Market -> Machinjiri_Market = 29700 m
+Path: Chileka_Market -> Manje -> Blantyre_Central -> Chimwankhunda -> Bangwe -> Limbe -> Machinjiri_Market

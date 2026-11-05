@@ -1,0 +1,346 @@
+{
+ "nodes": [
+  {
+   "name": "Blantyre_Central",
+   "lon": 35.0036,
+   "lat": -15.7867
+  },
+  {
+   "name": "Limbe",
+   "lon": 35.0642,
+   "lat": -15.8133
+  },
+  {
+   "name": "Ndirande",
+   "lon": 35.0302,
+   "lat": -15.7692
+  },
+  {
+   "name": "Chilomoni",
+   "lon": 34.9806,
+   "lat": -15.7503
+  },
+  {
+   "name": "Bangwe",
+   "lon": 35.047,
+   "lat": -15.8035
+  },
+  {
+   "name": "Soche",
+   "lon": 35.017,
+   "lat": -15.812
+  },
+  {
+   "name": "Chirimba",
+   "lon": 35.085,
+   "lat": -15.81
+  },
+  {
+   "name": "Kanjedza",
+   "lon": 35.062,
+   "lat": -15.778
+  },
+  {
+   "name": "Chitawira",
+   "lon": 35.047,
+   "lat": -15.793
+  },
+  {
+   "name": "Zingwangwa",
+   "lon": 34.985,
+   "lat": -15.801
+  },
+  {
+   "name": "Machinjiri_Market",
+   "lon": 35.08,
+   "lat": -15.84
+  },
+  {
+   "name": "Chilobwe",
+   "lon": 35.032,
+   "lat": -15.833
+  },
+  {
+   "name": "Chigumula",
+   "lon": 34.97,
+   "lat": -15.825
+  },
+  {
+   "name": "Lunzu",
+   "lon": 34.96,
+   "lat": -15.715
+  },
+  {
+   "name": "Chileka_Market",
+   "lon": 34.975,
+   "lat": -15.68
+  },
+  {
+   "name": "Kameza",
+   "lon": 34.969,
+   "lat": -15.787
+  },
+  {
+   "name": "Ginnery_Corner",
+   "lon": 35.019,
+   "lat": -15.776
+  },
+  {
+   "name": "Mbayani",
+   "lon": 34.988,
+   "lat": -15.789
+  },
+  {
+   "name": "Manje",
+   "lon": 34.993,
+   "lat": -15.764
+  },
+  {
+   "name": "Naperi",
+   "lon": 35.04,
+   "lat": -15.758
+  },
+  {
+   "name": "Chimwankhunda",
+   "lon": 35.025,
+   "lat": -15.795
+  },
+  {
+   "name": "Nkolokosa",
+   "lon": 35.013,
+   "lat": -15.76
+  }
+ ],
+ "edges": [
+  [
+   "Blantyre_Central",
+   "Soche",
+   4100
+  ],
+  [
+   "Blantyre_Central",
+   "Zingwangwa",
+   3300
+  ],
+  [
+   "Blantyre_Central",
+   "Ginnery_Corner",
+   2600
+  ],
+  [
+   "Blantyre_Central",
+   "Mbayani",
+   2200
+  ],
+  [
+   "Blantyre_Central",
+   "Manje",
+   3600
+  ],
+  [
+   "Blantyre_Central",
+   "Chimwankhunda",
+   3200
+  ],
+  [
+   "Limbe",
+   "Bangwe",
+   2800
+  ],
+  [
+   "Limbe",
+   "Chirimba",
+   2900
+  ],
+  [
+   "Limbe",
+   "Chitawira",
+   3800
+  ],
+  [
+   "Limbe",
+   "Machinjiri_Market",
+   4400
+  ],
+  [
+   "Limbe",
+   "Chilobwe",
+   5300
+  ],
+  [
+   "Ndirande",
+   "Ginnery_Corner",
+   1800
+  ],
+  [
+   "Ndirande",
+   "Naperi",
+   2100
+  ],
+  [
+   "Ndirande",
+   "Nkolokosa",
+   2700
+  ],
+  [
+   "Chilomoni",
+   "Lunzu",
+   5900
+  ],
+  [
+   "Chilomoni",
+   "Chileka_Market",
+   10200
+  ],
+  [
+   "Chilomoni",
+   "Kameza",
+   5500
+  ],
+  [
+   "Chilomoni",
+   "Manje",
+   2600
+  ],
+  [
+   "Chilomoni",
+   "Nkolokosa",
+   4700
+  ],
+  [
+   "Bangwe",
+   "Chirimba",
+   5400
+  ],
+  [
+   "Bangwe",
+   "Kanjedza",
+   4200
+  ],
+  [
+   "Bangwe",
+   "Chitawira",
+   1500
+  ],
+  [
+   "Bangwe",
+   "Chilobwe",
+   4700
+  ],
+  [
+   "Bangwe",
+   "Chimwankhunda",
+   3300
+  ],
+  [
+   "Soche",
+   "Chilobwe",
+   3700
+  ],
+  [
+   "Soche",
+   "Chimwankhunda",
+   2700
+  ],
+  [
+   "Chirimba",
+   "Machinjiri_Market",
+   4400
+  ],
+  [
+   "Kanjedza",
+   "Chitawira",
+   3000
+  ],
+  [
+   "Kanjedza",
+   "Naperi",
+   4200
+  ],
+  [
+   "Chitawira",
+   "Chimwankhunda",
+   3100
+  ],
+  [
+   "Zingwangwa",
+   "Chigumula",
+   4000
+  ],
+  [
+   "Zingwangwa",
+   "Kameza",
+   3000
+  ],
+  [
+   "Zingwangwa",
+   "Mbayani",
+   1800
+  ],
+  [
+   "Machinjiri_Market",
+   "Chilobwe",
+   6800
+  ],
+  [
+   "Chigumula",
+   "Kameza",
+   5500
+  ],
+  [
+   "Chigumula",
+   "Mbayani",
+   5800
+  ],
+  [
+   "Lunzu",
+   "Chileka_Market",
+   5500
+  ],
+  [
+   "Lunzu",
+   "Manje",
+   8400
+  ],
+  [
+   "Chileka_Market",
+   "Manje",
+   12400
+  ],
+  [
+   "Kameza",
+   "Mbayani",
+   2700
+  ],
+  [
+   "Kameza",
+   "Manje",
+   4700
+  ],
+  [
+   "Ginnery_Corner",
+   "Naperi",
+   3900
+  ],
+  [
+   "Ginnery_Corner",
+   "Chimwankhunda",
+   2900
+  ],
+  [
+   "Ginnery_Corner",
+   "Nkolokosa",
+   2500
+  ],
+  [
+   "Manje",
+   "Nkolokosa",
+   2800
+  ],
+  [
+   "Naperi",
+   "Nkolokosa",
+   3800
+  ]
+ ]
+}

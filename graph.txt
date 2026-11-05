@@ -1,0 +1,69 @@
+22 46
+Blantyre_Central
+Limbe
+Ndirande
+Chilomoni
+Bangwe
+Soche
+Chirimba
+Kanjedza
+Chitawira
+Zingwangwa
+Machinjiri_Market
+Chilobwe
+Chigumula
+Lunzu
+Chileka_Market
+Kameza
+Ginnery_Corner
+Mbayani
+Manje
+Naperi
+Chimwankhunda
+Nkolokosa
+Blantyre_Central Soche 4100
+Blantyre_Central Zingwangwa 3300
+Blantyre_Central Ginnery_Corner 2600
+Blantyre_Central Mbayani 2200
+Blantyre_Central Manje 3600
+Blantyre_Central Chimwankhunda 3200
+Limbe Bangwe 2800
+Limbe Chirimba 2900
+Limbe Chitawira 3800
+Limbe Machinjiri_Market 4400
+Limbe Chilobwe 5300
+Ndirande Ginnery_Corner 1800
+Ndirande Naperi 2100
+Ndirande Nkolokosa 2700
+Chilomoni Lunzu 5900
+Chilomoni Chileka_Market 10200
+Chilomoni Kameza 5500
+Chilomoni Manje 2600
+Chilomoni Nkolokosa 4700
+Bangwe Chirimba 5400
+Bangwe Kanjedza 4200
+Bangwe Chitawira 1500
+Bangwe Chilobwe 4700
+Bangwe Chimwankhunda 3300
+Soche Chilobwe 3700
+Soche Chimwankhunda 2700
+Chirimba Machinjiri_Market 4400
+Kanjedza Chitawira 3000
+Kanjedza Naperi 4200
+Chitawira Chimwankhunda 3100
+Zingwangwa Chigumula 4000
+Zingwangwa Kameza 3000
+Zingwangwa Mbayani 1800
+Machinjiri_Market Chilobwe 6800
+Chigumula Kameza 5500
+Chigumula Mbayani 5800
+Lunzu Chileka_Market 5500
+Lunzu Manje 8400
+Chileka_Market Manje 12400
+Kameza Mbayani 2700
+Kameza Manje 4700
+Ginnery_Corner Naperi 3900
+Ginnery_Corner Chimwankhunda 2900
+Ginnery_Corner Nkolokosa 2500
+Manje Nkolokosa 2800
+Naperi Nkolokosa 3800
