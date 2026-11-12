@@ -5,4 +5,7 @@
 - Shortest path: dijkstra graph.txt shortest Chileka_Market Machinjiri_Market --trace
 - MST (Kruskal): dijkstra graph.txt mst
 - Full test log: docs/test_log.txt   Report: docs/DSA_Assignment_Report.pdf
-Group members: (add names)
+Group members: 
+Lusekelo kawole (BIS/24/SS/021)
+Yamikani chinombo (BIS/24/SS/021)
+Patience Beza (BIS/24/SS/002)
